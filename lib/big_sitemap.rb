@@ -323,6 +323,7 @@ end
 
 
 class BigSitemapRails < BigSitemap
+  require 'action_controller'
 
   if defined?(Rails) && Rails.version < "3"
     include ActionController::UrlWriter
@@ -330,7 +331,6 @@ class BigSitemapRails < BigSitemap
 
   def initialize(options={})
     raise "No Rails Environment loaded" unless defined? Rails
-    require 'action_controller'
 
     if Rails.version >= "3"
       self.class.send(:include, Rails.application.routes.url_helpers)
